@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
 
+
 var config = {
   paths: {
     html: './src/*.html',
@@ -28,7 +29,9 @@ gulp.task('sass', function(){
   return gulp.src(config.paths.sass)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(config.paths.dist + '/styles'))
-})
+});
+
+
 
 
 
@@ -39,4 +42,4 @@ gulp.task('watch', function(){
 })
 
 
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'compress']);
