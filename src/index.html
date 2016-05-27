@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>A test thaaannngg</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="/styles/styles.css">
@@ -14,11 +15,11 @@
       My Awesome Photo App
     </header>
     <div class="flex-center">
-      <input type="button" id="search-button" value="Search Images">
-
+      <input type="button" id="searchButton" value="Search Images">
+      <input type="field" id="searchField" name="name" value="What'll ya have?" onfocus="if(this.value == 'What\'ll ya have?') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'What\'ll ya have?'; }"/>
     </div>
-    <div class="main-content">
-
+    <div id="container" class="grid">
+       
     </div>
   </body>
 </html>
