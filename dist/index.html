@@ -3,23 +3,36 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>A test thaaannngg</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <title>My Photo App</title>
     <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script type="text/javascript" src="/scripts/keys.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:900,900italic,500,500italic,800,800italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/styles/styles.css">
   </head>
   <body>
     <header class="flex-center">
-      My Awesome Photo App
+      <h1>My Photo App</h1>
     </header>
+    <div class="flex-center searchContainer">
+      <input type="search" class="searchField" id="searchField" name="name" placeholder="What'll ya have?" onfocus="if(this.placeholder == 'What\'ll ya have?') { this.placeholder = ''; }" onblur="if(this.placeholder == '') { this.placeholder = 'What\'ll ya have?'; }"/>
+      <button class="searchButton" id="searchButton">Search Images</button>
+      <button class="favButton" id="favButton">
+        <svg class="favStar" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 33.6 32" style="enable-background:new 0 0 33.6 32;" xml:space="preserve">
+          <polygon class="st0" points="16.8,0 20.8,12.2 33.6,12.2 23.3,19.8 27.2,32 16.8,24.5 6.4,32 10.4,19.8 0,12.2 12.8,12.2 "/>
+        </svg>
+      </button>
+    </div>
     <div class="flex-center">
-      <input type="button" id="searchButton" value="Search Images">
-      <input type="field" id="searchField" name="name" value="What'll ya have?" onfocus="if(this.value == 'What\'ll ya have?') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'What\'ll ya have?'; }"/>
+      <div id="container" class="grid">
+
+      </div>
     </div>
-    <div id="container" class="grid">
-       
-    </div>
+
   </body>
 </html>

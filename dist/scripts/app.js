@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-
   var searchButton = $('#searchButton');
 
   searchButton.on('click', search);
@@ -9,28 +8,70 @@ $(document).ready(function() {
       search();
     };
   });
+
+  //  Show Favorites  //
+  $('#favButton').on('click', myFavs);
+
 });
 
+//  Firebase  //
 
 
-function search(){
+//  Search Function  //
+function search() {
   var searchField = $('#searchField');
   var newSearch = "";
   newSearch = (searchField.val() ? searchField.val():alert('Give me a topic!!!'));
   $.ajax({
-    url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=3057bbe793041f44719b1cf3dd4f4748&per_page=30&format=json&nojsoncallback=1&tags=' + newSearch,
+    url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search&' + flickrApi +'&per_page=50&format=json&nojsoncallback=1&tags=' + newSearch,
     type: 'GET',
     success: function(data) {
+
+  //  Reset HTML every button press //
       $('#container').html('');
+
+  //  Construct URL from input values //
       $(data.photos.photo).each(function(index, value) {
-        var imageUrl = 'https://farm' + value.farm + '.staticflickr.com/' + value.server + '/' + value.id + '_' + value.secret + '_b.jpg';
+        var imageUrl = 'https://farm' + value.farm + '.staticflickr.com/' + value.server + '/' + value.id + '_' + value.secret + '_z.jpg';
 
-        console.log(imageUrl);
+  //  Append to HTML  //
+        $('<img class="grid-item" src="' + imageUrl + '" alt=""/>').appendTo($('#container'));
 
-        $('<img src="' + imageUrl + '" alt="" />').appendTo($('#container'));
+      }); //End URL constructor
 
-      });
-              console.log(data);
+      //  Make Image Favorite //
+      $('.grid-item').on('click', newFav);
+
+
+    }  //End Success
+  }); //End Ajax
+}; //End Search
+
+
+var favList = firebase.database().ref('FavImage');
+
+//  Add Favorites Function //
+function newFav() {
+  favList.push({
+    imageUrl: $(this).attr('src')
+  });
+  $(this).toggleClass('favPic');
+}
+
+
+
+//  View Favorites Function //
+function myFavs() {
+
+  favList.on('value', function (results) {
+    $('#container').html('');
+    var myFavs = results.val();
+    for (var item in myFavs) {
+      $img = $('<img />')
+      $img.addClass("grid-item");
+      $img.attr("src", myFavs[item].imageUrl);
+      $img.attr("data-id", item);
+      $('#container').prepend($img);
     }
   });
-};
+}
