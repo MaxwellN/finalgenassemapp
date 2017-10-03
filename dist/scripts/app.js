@@ -35,7 +35,7 @@ function search() {
         var imageUrl = 'https://farm' + value.farm + '.staticflickr.com/' + value.server + '/' + value.id + '_' + value.secret + '_z.jpg';
 
   //  Append to HTML  //
-        $('<img class="grid-item" onclick="deleteFav(this)" src="' + imageUrl + '" alt=""/>').appendTo($('#container'));
+        $('<img class="grid-item fav-image" onclick="deleteFav(this)" src="' + imageUrl + '" alt=""/>').appendTo($('#container'));
 
       }); //End URL constructor
 
